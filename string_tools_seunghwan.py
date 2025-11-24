@@ -37,6 +37,8 @@ def remove_spaces(s: str) -> str:
 
 import string_tools_seunghwan as st
 
+# -*- coding: utf-8 -*-
+
 def print_menu():
     print("\n===== 문자열 처리 프로그램 =====")
     print("1. 대문자로 변환")
