@@ -84,11 +84,13 @@
    ```bash
    git clone <레포지토리 URL>
    cd UtilityPack
+   ```
 
 2. 파이썬 실행(Python 3.x)
-
   ```bash
   python main_menu.py
+  ```
+
 
 ## 4. Git 협업 기록
 
