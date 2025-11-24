@@ -5,44 +5,72 @@ def to_upper(text: str) -> str:
     return text.upper()
 
 
-def to_lower(text: str) -> str:
-    """문자열을 모두 소문자로 변환"""
-    return text.lower()
+# string_tools_seunghwan.py
+# 문자열 처리 기능 구현 파일
+
+def to_upper(s: str) -> str:
+    """문자열을 대문자로 변환"""
+    return s.upper()
 
 
-def capitalize_first(text: str) -> str:
-    """문자열의 첫 글자만 대문자로 변환"""
-    return text.capitalize()
+def to_lower(s: str) -> str:
+    """문자열을 소문자로 변환"""
+    return s.lower()
 
 
-def swap_case(text: str) -> str:
-    """대문자는 소문자로, 소문자는 대문자로 변환"""
-    return text.swapcase()
+def reverse_string(s: str) -> str:
+    """문자열을 뒤집어서 반환"""
+    return s[::-1]
 
 
-def remove_spaces(text: str) -> str:
-    """모든 공백 제거"""
-    return text.replace(" ", "")
-
-
-def count_vowels(text: str) -> int:
-    """문자열에서 모음 개수 세기"""
+def count_vowels(s: str) -> int:
+    """문자열에서 모음(a,e,i,o,u) 개수 반환"""
     vowels = "aeiouAEIOU"
-    return sum(1 for char in text if char in vowels)
+    return sum(1 for ch in s if ch in vowels)
 
 
-def reverse_string(text: str) -> str:
-    """문자열 뒤집기"""
-    return text[::-1]
+def remove_spaces(s: str) -> str:
+    """문자열의 모든 공백 제거"""
+    return s.replace(" ", "")
+# main.py
+# 메뉴와 string_tools_seunghwan.py 기능 연동
 
+import string_tools_seunghwan as st
+
+def print_menu():
+    print("\n===== 문자열 처리 프로그램 =====")
+    print("1. 대문자로 변환")
+    print("2. 소문자로 변환")
+    print("3. 문자열 뒤집기")
+    print("4. 문자열 모음 개수 세기")
+    print("5. 공백 제거")
+    print("0. 종료")
+    print("===============================")
+
+def main():
+    while True:
+        print_menu()
+        
+        choice = input("메뉴 선택: ")
+        
+        if choice == "0":
+            print("프로그램 종료.")
+            break
+        
+        s = input("문자열 입력: ")
+
+        if choice == "1":
+            print("결과:", st.to_upper(s))
+        elif choice == "2":
+            print("결과:", st.to_lower(s))
+        elif choice == "3":
+            print("결과:", st.reverse_string(s))
+        elif choice == "4":
+            print("모음 개수:", st.count_vowels(s))
+        elif choice == "5":
+            print("결과:", st.remove_spaces(s))
+        else:
+            print("잘못된 입력입니다.")
 
 if __name__ == "__main__":
-    # 간단한 테스트
-    sample = "Hello World"
-    print("Upper:", to_upper(sample))
-    print("Lower:", to_lower(sample))
-    print("Capitalize:", capitalize_first(sample))
-    print("Swapcase:", swap_case(sample))
-    print("No spaces:", remove_spaces(sample))
-    print("Vowels:", count_vowels(sample))
-    print("Reversed:", reverse_string(sample))
+    main()
