@@ -10,7 +10,14 @@ def reverse_text(text):
 def count_text_length(text):
     return len(text)
 
+
+# 전역변수 초기값
+user_text = ""
+
+
 def main():
+    global user_text
+
     while True:
         print("===== 문자열 처리 프로그램 =====")
         print("1. 대문자로 변환")
@@ -21,7 +28,12 @@ def main():
         print("0. 종료")
         print("===============================")
 
-        choice = input("메뉴를 선택하세요: ")
+        choice = input("메뉴를 선택하세요: ").strip()
+
+        # 문자열이 필요한 메뉴인데 아직 문자열이 없을 때
+        if choice in ["1", "2", "3", "4"] and user_text == "":
+            print("먼저 5번에서 문자열을 입력해주세요.\n")
+            continue
 
         if choice == "1":
             print("결과:", convert_uppercase(user_text))
@@ -36,7 +48,6 @@ def main():
             print("글자 수:", count_text_length(user_text))
 
         elif choice == "5":
-            global user_text
             user_text = input("새 문자열 입력: ")
 
         elif choice == "0":
@@ -48,8 +59,6 @@ def main():
 
         print()
 
-# 전역변수 초기값
-user_text = ""
 
 if __name__ == "__main__":
     main()
