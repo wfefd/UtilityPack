@@ -1,11 +1,10 @@
 # main_menu.py
-import tkinter as tk
-from tkinter import messagebox
+# 터미널 버전 메인 메뉴
 
 # 각 기능 파일 import (없으면 None으로 둔다)
 try:
     import unit_converter_hyungkyu as mod_unit
-except ImportErroru:
+except ImportError:
     mod_unit = None
 
 try:
@@ -23,8 +22,9 @@ try:
 except ImportError:
     mod_string = None
 
+# 파일 이름이 password_generator_jungsu.py 라고 가정
 try:
-    import password_generator_jungsu as mod_pw
+    import password_generator_jngsu as mod_pw
 except ImportError:
     mod_pw = None
 
@@ -32,17 +32,19 @@ except ImportError:
 def run_module(mod, label: str):
     """모듈과 label을 받아서 main()을 실행하거나, 없으면 안내 메시지."""
     if mod is None:
-        messagebox.showinfo("준비 중", f"{label} 기능 파일이 아직 존재하지 않습니다.\n"
-                                      f"해당 담당자가 파일을 커밋해야 합니다.")
+        print(f"[안내] {label} 기능 파일이 아직 존재하지 않습니다.")
+        print("       담당자가 파일을 생성하고 커밋해야 합니다.\n")
         return
 
     if not hasattr(mod, "main"):
-        messagebox.showinfo("오류", f"{label} 모듈에 main() 함수가 없습니다.\n"
-                                   f"파일 안에 def main(): 을 만들어 주세요.")
+        print(f"[오류] {label} 모듈에 main() 함수가 없습니다.")
+        print("       파일 안에 def main(): 을 만들어 주세요.\n")
         return
 
     # 실제 기능 실행
+    print(f"\n>>> {label} 실행\n")
     mod.main()
+    print(f"\n>>> {label} 종료\n")
 
 
 def open_unit_converter():
@@ -65,73 +67,39 @@ def open_password_generator():
     run_module(mod_pw, "랜덤 비밀번호 생성기 (정수)")
 
 
-def create_main_window():
-    root = tk.Tk()
-    root.title("Team Utility Pack")
-    root.geometry("420x320")
+def create_main_menu():
+    """터미널용 메인 메뉴 루프"""
+    while True:
+        print("===================================")
+        print("         Team Utility Pack         ")
+        print("===================================")
+        print("1. 단위 변환기 (형규)")
+        print("2. 간단 계산기 (진철)")
+        print("3. 점수 평균 계산 (하린)")
+        print("4. 문자열 처리 (승환)")
+        print("5. 랜덤 비밀번호 생성기 (정수)")
+        print("0. 종료")
+        print("===================================")
 
-    title_label = tk.Label(
-        root,
-        text="Team Utility Pack",
-        font=("맑은 고딕", 16, "bold")
-    )
-    title_label.pack(pady=15)
+        choice = input("사용할 기능 번호를 선택하세요: ").strip()
+        print()
 
-    subtitle_label = tk.Label(
-        root,
-        text="사용할 기능을 선택하세요",
-        font=("맑은 고딕", 11)
-    )
-    subtitle_label.pack(pady=5)
-
-    # 버튼들
-    btn1 = tk.Button(
-        root,
-        text="단위 변환기 (형규)",
-        width=30,
-        height=2,
-        command=open_unit_converter
-    )
-    btn1.pack(pady=5)
-
-    btn2 = tk.Button(
-        root,
-        text="간단 계산기 (진철)",
-        width=30,
-        height=2,
-        command=open_simple_calculator
-    )
-    btn2.pack(pady=5)
-
-    btn3 = tk.Button(
-        root,
-        text="점수 평균 계산 (하린)",
-        width=30,
-        height=2,
-        command=open_score_average
-    )
-    btn3.pack(pady=5)
-
-    btn4 = tk.Button(
-        root,
-        text="문자열 처리 (승환)",
-        width=30,
-        height=2,
-        command=open_string_tools
-    )
-    btn4.pack(pady=5)
-
-    btn5 = tk.Button(
-        root,
-        text="랜덤 비밀번호 생성기 (정수)",
-        width=30,
-        height=2,
-        command=open_password_generator
-    )
-    btn5.pack(pady=5)
-
-    root.mainloop()
+        if choice == "1":
+            open_unit_converter()
+        elif choice == "2":
+            open_simple_calculator()
+        elif choice == "3":
+            open_score_average()
+        elif choice == "4":
+            open_string_tools()
+        elif choice == "5":
+            open_password_generator()
+        elif choice == "0" or choice.lower() == "q":
+            print("프로그램을 종료합니다.")
+            break
+        else:
+            print("잘못된 입력입니다. 0~5 사이의 번호를 입력하세요.\n")
 
 
 if __name__ == "__main__":
-    create_main_window()
+    create_main_menu()
