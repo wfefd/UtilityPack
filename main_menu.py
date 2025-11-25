@@ -24,7 +24,7 @@ except ImportError:
 
 # 파일 이름이 password_generator_jungsu.py 라고 가정
 try:
-    import password_generator_jngsu as mod_pw
+    import password_generator_jungsu as mod_pw
 except ImportError:
     mod_pw = None
 
