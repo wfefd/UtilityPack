@@ -75,6 +75,7 @@
    ```
 
 2. 파이썬 실행(Python 3.x)
+   
   ```bash
   python main_menu.py
   ```
